@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{9B27183C-55F3-4A1F-AE6B-35D5F2022E3A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{1958F0D2-8E5B-4D3C-B49A-1B7DEAC57ECD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeCourse.Services.Catalog", "Services\Catalog\FreeCourse.Services.Catalog\FreeCourse.Services.Catalog.csproj", "{F34D22DB-4333-45E0-ABCA-EE299C19BE6C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7B00C243-43C9-4A98-B550-3D054FAD0DCE}"
+	ProjectSection(SolutionItems) = preProject
+		Ports.txt = Ports.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F34D22DB-4333-45E0-ABCA-EE299C19BE6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F34D22DB-4333-45E0-ABCA-EE299C19BE6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F34D22DB-4333-45E0-ABCA-EE299C19BE6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F34D22DB-4333-45E0-ABCA-EE299C19BE6C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1958F0D2-8E5B-4D3C-B49A-1B7DEAC57ECD} = {9B27183C-55F3-4A1F-AE6B-35D5F2022E3A}
+		{F34D22DB-4333-45E0-ABCA-EE299C19BE6C} = {1958F0D2-8E5B-4D3C-B49A-1B7DEAC57ECD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {87F2105B-325F-4A00-9A36-7AD66C0F38F5}
+	EndGlobalSection
+EndGlobal
