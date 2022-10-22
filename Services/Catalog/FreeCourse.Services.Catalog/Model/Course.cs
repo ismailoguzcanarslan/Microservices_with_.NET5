@@ -16,5 +16,13 @@ namespace FreeCourse.Services.Catalog.Model
         [BsonRepresentation(BsonType.DateTime)]
         public DateTime CreatedOn { get; set; }
         public string UserId { get; set; }
+        public Feature Feature { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string CategoryId { get; set; }
+        public string Description { get; set; }
+
+        //MongoDb tarafında collectionlar oluşurken bunu eklememesi için kullanılan annotation. Kursları ile beraber kategorileri de dönmek istediğimiz için kullanıyoruz.
+        [BsonIgnore]
+        public Category Category { get; set; }
     }
 }
