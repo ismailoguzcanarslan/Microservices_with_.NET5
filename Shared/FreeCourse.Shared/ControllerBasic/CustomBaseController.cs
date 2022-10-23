@@ -7,8 +7,10 @@ namespace FreeCourse.Shared.ControllerBasic
     {
         public IActionResult CreateActionResultInsance<T>(Response<T> response) {
 
-
+            return new ObjectResult(response)
+            {
+                StatusCode = response.StatusCode
+            };
         }
-
     }
 }
