@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace FreeCourse.IdentityServer.Controllers
@@ -35,7 +36,7 @@ namespace FreeCourse.IdentityServer.Controllers
                 Email = signupDto.Email,
                 City = signupDto.City
             };
-
+             
             var result = await _userManager.CreateAsync(user, signupDto.Password);
 
             if (!result.Succeeded)
