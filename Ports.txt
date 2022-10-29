@@ -1,2 +1,5 @@
 Sevices
 	CatalogAPI - 5011
+	PhotoStockAPI - 5012
+IdentityServer
+	IdentityAPI - 5001
