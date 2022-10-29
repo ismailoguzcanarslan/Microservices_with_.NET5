@@ -1,5 +1,6 @@
 Sevices
 	CatalogAPI - 5011
 	PhotoStockAPI - 5012
+	BasketAPI - 5013
 IdentityServer
 	IdentityAPI - 5001
