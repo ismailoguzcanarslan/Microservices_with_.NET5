@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using FreeCourse.IdentityServer.Services;
+using IdentityServer4.Validation;
 
 namespace FreeCourse.IdentityServer
 {
@@ -53,6 +55,8 @@ namespace FreeCourse.IdentityServer
                 .AddInMemoryClients(Config.Clients)
                 .AddInMemoryApiResources(Config.ApiResources)
                 .AddAspNetIdentity<ApplicationUser>();
+
+            builder.AddResourceOwnerValidator<IdentityServerOwnerPasswordValidator>();
 
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
