@@ -16,6 +16,7 @@ namespace FreeCourse.IdentityServer
         {
             new ApiResource("resource_catalog"){Scopes = { "catalog_fullpermission" } },
             new ApiResource("resource_photostock"){Scopes = { "photostock_fullpermission" } },
+            new ApiResource("resource_basket"){Scopes = { "basket_fullpermission" } },
             new ApiResource(IdentityServerConstants.LocalApi.ScopeName),
         };
 
@@ -33,6 +34,7 @@ namespace FreeCourse.IdentityServer
             {
                 new ApiScope("catalog_fullpermission", "Full Access To Catalog API"),
                 new ApiScope("photostock_fullpermission", "Full Access To Photo Stock API"),
+                new ApiScope("basket_fullpermission", "Full Access To Basket API"),
                 new ApiScope(IdentityServerConstants.LocalApi.ScopeName, "Full Access To Identity Server API")
             };
 
@@ -54,7 +56,7 @@ namespace FreeCourse.IdentityServer
                    AllowOfflineAccess = true,
                    ClientSecrets = {new Secret("secret".Sha256())},
                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-                   AllowedScopes = { IdentityServerConstants.StandardScopes.Email, IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile,IdentityServerConstants.StandardScopes.OfflineAccess, "roles", IdentityServerConstants.LocalApi.ScopeName},
+                   AllowedScopes = { "basket_fullpermission", IdentityServerConstants.StandardScopes.Email, IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile,IdentityServerConstants.StandardScopes.OfflineAccess, "roles", IdentityServerConstants.LocalApi.ScopeName},
                    AccessTokenLifetime = 1*60*60,
                    RefreshTokenExpiration = TokenExpiration.Absolute,
                    AbsoluteRefreshTokenLifetime = (int)(DateTime.Now.AddDays(60) - DateTime.Now).TotalSeconds,
