@@ -39,13 +39,13 @@ namespace FreeCourse.Services.Discount.Services
             return Response<List<Models.Discount>>.Success(discounts.ToList(), 200);
         }
 
-        public async Task<Response<Models.Discount>> GetByCodeAndUserId(string code, string userId)
+        public async Task<Response<dynamic>> GetByCodeAndUserId(string code, string userId)
         {
-            var discount = (await _connection.QueryAsync("SELECT * FROM discount WHERE userid=@Userid AND code=@Code", new { UserId = userId, Code = code})).SingleOrDefault();
+            var discount = (await _connection.QueryAsync("SELECT * FROM discount WHERE userid=@UserId AND code=@Code", new { UserId = userId, Code = code })).FirstOrDefault();
 
             if (discount == null)
-                return Response<Models.Discount>.Error("Discount Not Found", 404);
-            return Response<Models.Discount>.Success(discount, 200);
+                return Response<dynamic>.Error("Discount Not Found", 404);
+            return Response<dynamic>.Success(discount, 200);
         }
 
         public async Task<Response<Models.Discount>> GetDiscount(int id)
@@ -59,7 +59,7 @@ namespace FreeCourse.Services.Discount.Services
 
         public async Task<Response<NoContent>> Save(Models.Discount discount)
         {
-            var status = await _connection.ExecuteAsync("INSERT INTO discount {userid,rate,code} VALUES(@UserId,@Rate,@Code)", discount);
+            var status = await _connection.ExecuteAsync("INSERT INTO discount (userid,rate,code) VALUES(@UserId,@Rate,@Code)", new {UserId = discount.UserId, Rate = discount.Rate, Code = discount.Code});
 
             if (status > 0)
                 return Response<NoContent>.Success(204);
@@ -68,7 +68,7 @@ namespace FreeCourse.Services.Discount.Services
 
         public async Task<Response<NoContent>> Update(Models.Discount discount)
         {
-            var status = await _connection.ExecuteAsync("UPDATE discount SET userid=@Userid,code=@Code,rate=@Rate WHERE id=@Id", new {Id = discount.Id, UserId = discount.UserId, Code = discount.Code, Rate = discount.Rate});
+            var status = await _connection.ExecuteAsync("UPDATE discount SET userid=@Userid, code=@Code, rate=@Rate WHERE id=@Id", new {Id = discount.Id, UserId = discount.UserId, Code = discount.Code, Rate = discount.Rate});
 
             if (status > 0)
                 return Response<NoContent>.Success(204);

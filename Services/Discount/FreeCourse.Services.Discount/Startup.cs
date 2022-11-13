@@ -1,4 +1,5 @@
 using FreeCourse.Services.Discount.Services;
+using FreeCourse.Shared.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -41,6 +42,7 @@ namespace FreeCourse.Services.Discount
             });
 
             services.AddScoped<IDiscountService, DiscountService>();
+            services.AddScoped<ISharedIdentityService, SharedIdentityService>();
 
             services.AddControllers(opt =>
             {
