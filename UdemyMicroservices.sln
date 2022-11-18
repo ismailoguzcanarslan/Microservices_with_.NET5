@@ -48,7 +48,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreeCourse.Services.Order.I
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FakePayment", "FakePayment", "{E19D2375-BCC6-4DEF-AC76-E1DC83947775}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeCourse.Services.FakePayment", "Services\FakePayment\FreeCourse.Services.FakePayment\FreeCourse.Services.FakePayment.csproj", "{19CD041C-740C-43F7-AF26-494DCB683C1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreeCourse.Services.FakePayment", "Services\FakePayment\FreeCourse.Services.FakePayment\FreeCourse.Services.FakePayment.csproj", "{19CD041C-740C-43F7-AF26-494DCB683C1C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateways", "Gateways", "{C256D5EF-C8C9-4B5E-A17C-E5C9A86C9E63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeCourse.Gateway", "FreeCourse.Gateway\FreeCourse.Gateway.csproj", "{71325CDD-E421-4D80-A3EB-897A3CCBAB2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -104,6 +108,10 @@ Global
 		{19CD041C-740C-43F7-AF26-494DCB683C1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19CD041C-740C-43F7-AF26-494DCB683C1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19CD041C-740C-43F7-AF26-494DCB683C1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71325CDD-E421-4D80-A3EB-897A3CCBAB2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71325CDD-E421-4D80-A3EB-897A3CCBAB2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71325CDD-E421-4D80-A3EB-897A3CCBAB2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71325CDD-E421-4D80-A3EB-897A3CCBAB2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -127,6 +135,7 @@ Global
 		{0D3B84E5-8397-447C-93B3-C5D6A90E7696} = {D161BF76-909F-4213-A784-CF3AA3FE5A39}
 		{E19D2375-BCC6-4DEF-AC76-E1DC83947775} = {9B27183C-55F3-4A1F-AE6B-35D5F2022E3A}
 		{19CD041C-740C-43F7-AF26-494DCB683C1C} = {E19D2375-BCC6-4DEF-AC76-E1DC83947775}
+		{71325CDD-E421-4D80-A3EB-897A3CCBAB2B} = {C256D5EF-C8C9-4B5E-A17C-E5C9A86C9E63}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {87F2105B-325F-4A00-9A36-7AD66C0F38F5}

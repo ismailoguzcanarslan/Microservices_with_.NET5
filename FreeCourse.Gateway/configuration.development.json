@@ -1,0 +1,121 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5011"
+        }
+      ],
+      "UpstreamPathTemplate": "/service/catalog/{everything}", //catalogdan sonra ne yazılırsa yazılsa microservice path'ine değeri ilet 
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ], //izin verilen http metodları
+      "UpstreamScheme": "http", //Sadece http üzerinden istek yapılabilir
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationSchema",
+        "AllowedScopes": [ "catalog_fullpermission" ]
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5012"
+        }
+      ],
+      "UpstreamPathTemplate": "/service/photostock/{everything}", //catalogdan sonra ne yazılırsa yazılsa microservice path'ine değeri ilet 
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ], //izin verilen http metodları
+      "UpstreamScheme": "http", //Sadece http üzerinden istek yapılabilir
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationSchema",
+        "AllowedScopes": [ "photostock_fullpermission" ]
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5013"
+        }
+      ],
+      "UpstreamPathTemplate": "/service/basket/{everything}", //catalogdan sonra ne yazılırsa yazılsa microservice path'ine değeri ilet 
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ], //izin verilen http metodları
+      "UpstreamScheme": "http", //Sadece http üzerinden istek yapılabilir
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationSchema",
+        "AllowedScopes": [ "basket_fullpermission" ]
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5014"
+        }
+      ],
+      "UpstreamPathTemplate": "/service/discount/{everything}", //catalogdan sonra ne yazılırsa yazılsa microservice path'ine değeri ilet 
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ], //izin verilen http metodları
+      "UpstreamScheme": "http", //Sadece http üzerinden istek yapılabilir
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationSchema",
+        "AllowedScopes": [ "discount_fullpermission" ]
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5015"
+        }
+      ],
+      "UpstreamPathTemplate": "/service/order/{everything}", //catalogdan sonra ne yazılırsa yazılsa microservice path'ine değeri ilet 
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ], //izin verilen http metodları
+      "UpstreamScheme": "http", //Sadece http üzerinden istek yapılabilir
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationSchema",
+        "AllowedScopes": [ "order_fullpermission" ]
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5016"
+        }
+      ],
+      "UpstreamPathTemplate": "/service/payment/{everything}", //catalogdan sonra ne yazılırsa yazılsa microservice path'ine değeri ilet 
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ], //izin verilen http metodları
+      "UpstreamScheme": "http", //Sadece http üzerinden istek yapılabilir
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationSchema",
+        "AllowedScopes": [ "payment_fullpermission" ]
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5000"
+  }
+}
+
+//Örnek Dönüşümler
+
+//GetAll
+// OCELOT       http://localhost:5000/services/catalog/courses  => courses = {everything}
+// MICORSERVICE http://localhost:5011/api/courses/
+
+//GetById
+// OCELOT       http://localhost:5000/services/catalog/courses/5 => courses/5 = {everything}
+// MICORSERVICE http://localhost:5011/api/courses/5
+
+//Yanisi '/api/' dan sonra everything içerisinde gelen herşeyi al microservice tarafına gönder demek istiyoruz.

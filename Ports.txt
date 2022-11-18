@@ -7,3 +7,5 @@ Sevices
 	FakePayment - 5016
 IdentityServer
 	IdentityAPI - 5001
+Gateway
+	OcelotLibrary - 5000
