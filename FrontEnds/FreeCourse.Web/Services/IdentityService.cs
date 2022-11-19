@@ -72,7 +72,7 @@ namespace FreeCourse.Web.Services
                 
                 var errorDto = JsonSerializer.Deserialize<ErrorDto>(response,new JsonSerializerOptions { PropertyNameCaseInsensitive = true});
 
-                return Response<bool>.Success(false, 400);
+                return Response<bool>.Error(errorDto.Errors, 400);
             }
 
             var userInfoRequest = new UserInfoRequest
