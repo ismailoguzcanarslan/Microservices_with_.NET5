@@ -41,6 +41,8 @@ namespace FreeCourse.IdentityServer.Services
                 errors.Add("errors", new List<string>() { "Wrong password or username" });
 
                 context.Result.CustomResponse = errors;
+
+                return;
             }
 
             context.Result = new GrantValidationResult(isExistedUser.Id.ToString(), OidcConstants.AuthenticationMethods.Password);

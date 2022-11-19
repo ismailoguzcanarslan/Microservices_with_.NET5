@@ -9,3 +9,5 @@ IdentityServer
 	IdentityAPI - 5001
 Gateway
 	OcelotLibrary - 5000
+FrontEnds
+	Web - 5010
