@@ -25,7 +25,6 @@ namespace FreeCourse.Web.Services
         private readonly ClientSettings _clientSettings;
         private readonly ServiceApiSettings _serviceApiSettings;  
 
-
         public IdentityService(HttpClient client, IHttpContextAccessor contextAccessor, IOptions<ClientSettings> clientSettings, IOptions<ServiceApiSettings> serviceApiSettings)
         {
             _httpClient = client;
@@ -38,7 +37,7 @@ namespace FreeCourse.Web.Services
         {
             var disco = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
             {
-                Address = _serviceApiSettings.BaseUri,
+                Address = _serviceApiSettings.IdentityBaseUri,
                 Policy = new DiscoveryPolicy { RequireHttps = false }
             });
 
@@ -83,7 +82,7 @@ namespace FreeCourse.Web.Services
         {
             var disco = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
             {
-                Address = _serviceApiSettings.BaseUri,
+                Address = _serviceApiSettings.IdentityBaseUri,
                 Policy = new DiscoveryPolicy { RequireHttps = false }
             });
 
@@ -108,7 +107,7 @@ namespace FreeCourse.Web.Services
         {
             var disco = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
             {
-                Address = _serviceApiSettings.BaseUri,
+                Address = _serviceApiSettings.IdentityBaseUri,
                 Policy = new DiscoveryPolicy { RequireHttps = false}
             });
 
