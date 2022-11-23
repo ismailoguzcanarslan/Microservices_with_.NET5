@@ -1,3 +1,4 @@
+using FreeCourse.Shared.Services;
 using FreeCourse.Web.Handler;
 using FreeCourse.Web.Models;
 using FreeCourse.Web.Services;
@@ -31,14 +32,20 @@ namespace FreeCourse.Web
             services.AddHttpClient<IIdentityService, IdentityService>();
 
             services.AddScoped<ResourceOwnerPasswordTokenHandler>();
-            services.Configure<ServiceApiSettings>(Configuration.GetSection("ServiceAppSettings"));
+            services.Configure<ServiceAppSettings>(Configuration.GetSection("ServiceAppSettings"));
             services.Configure<ClientSettings>(Configuration.GetSection("ClientSettings"));
+            services.AddScoped<ISharedIdentityService, SharedIdentityService>();
 
-            ServiceApiSettings serviceApiSettings = new ServiceApiSettings();
+            var serviceApiSettings = Configuration.GetSection("ServiceAppSettings").Get<ServiceAppSettings>();
             services.AddHttpClient<IUserService, UserService>(opt =>
             {
-                opt.BaseAddress = new Uri("http://localhost:5001");
+                opt.BaseAddress = new Uri(serviceApiSettings.IdentityBaseUri);
             }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+            services.AddHttpClient<ICatalogService, CatalogService>(opt =>
+            {
+                opt.BaseAddress = new Uri(serviceApiSettings.GatewayBaseUri + serviceApiSettings.Catalog.Path);
+            });
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
             {
