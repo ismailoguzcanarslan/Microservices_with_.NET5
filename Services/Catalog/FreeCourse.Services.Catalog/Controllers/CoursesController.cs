@@ -36,7 +36,7 @@ namespace FreeCourse.Services.Catalog.Controllers
         }
 
         [HttpGet]
-        [Route("api/[controller]/{userid}")]
+        [Route("api/[controller]/GetAllByUserId/{userid}")]
         public async Task<IActionResult> GetAllByUserId(string userid)
         {
             var response = await _courseService.GetAllByUserId(userid);
