@@ -41,7 +41,7 @@ namespace FreeCourse.Web.Controllers
         {
             var categories = await _catalogService.GetCategoriesAsync();
             
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View();
             }
@@ -49,6 +49,56 @@ namespace FreeCourse.Web.Controllers
             input.UserId = _identityService.GetUserId;
 
             await _catalogService.CreateCourseAsync(input);
+
+            return RedirectToAction("Index", "Course");
+        }
+
+        public async Task<IActionResult> Update(string id)
+        {
+            var course = await _catalogService.GetCourseByIdAsync(id);
+            var categories = await _catalogService.GetCategoriesAsync();
+
+            if(course != null)
+            {
+                CourseUpdateInput courseUpdateInput = new CourseUpdateInput
+                {
+                    UserId = course.UserId,
+                    Id = course.Id,
+                    Name = course.Name,
+                    Price = course.Price,
+                    Feature = course.Feature,
+                    CategoryId = course.CategoryId,
+                    Description = course.Description,
+                    Picture = course.Picture,
+                };
+
+                ViewBag.categoryList = new SelectList(categories, "Id", "Name", course.Id);
+
+                return View(courseUpdateInput);
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(CourseUpdateInput input)
+        {
+            var categories = await _catalogService.GetCategoriesAsync();
+            ViewBag.categoryList = new SelectList(categories, "Id", "Name", input.Id);
+            
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            await _catalogService.UpdateCourseAsync(input);
+
+            return RedirectToAction("Index", "Course");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(string id)
+        {
+            await _catalogService.DeleteCourseAsync(id);
 
             return RedirectToAction("Index", "Course");
         }
