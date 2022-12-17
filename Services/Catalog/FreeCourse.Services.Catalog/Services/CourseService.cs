@@ -4,6 +4,7 @@ using FreeCourse.Services.Catalog.Model;
 using FreeCourse.Services.Catalog.Settings;
 using FreeCourse.Shared.Dtos;
 using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -82,6 +83,8 @@ namespace FreeCourse.Services.Catalog.Services
         public async Task<Response<CourseDto>> CreateAsync(CourseCreateDto courseCreateDto)
         {
             var newCourse = _mapper.Map<Course>(courseCreateDto);
+
+            newCourse.CreatedOn = DateTime.Now;
 
             await _courseCollection.InsertOneAsync(newCourse);
 
