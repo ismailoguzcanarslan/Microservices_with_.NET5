@@ -13,6 +13,7 @@ namespace FreeCourse.Web.Models
         public FeatureViewModel Feature { get; set; }
         public string CategoryId { get; set; }
         public string Description { get; set; }
+        public string ShortDescription { get => Description.Length > 100 ? Description.Substring(0, 100) + "..." : Description; }
         public CategoryViewModel Category { get; set; }
     }
 }

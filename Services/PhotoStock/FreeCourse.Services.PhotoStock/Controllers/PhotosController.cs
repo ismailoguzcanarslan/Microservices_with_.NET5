@@ -25,7 +25,7 @@ namespace FreeCourse.Services.PhotoStock.Controllers
                     await photo.CopyToAsync(stream, cancellationToken);
                 }
 
-                var returnPath = "photos/" + photo.FileName;
+                var returnPath = photo.FileName;
 
                 PhotoDto photoDto = new () { Url = returnPath };
 
@@ -36,7 +36,6 @@ namespace FreeCourse.Services.PhotoStock.Controllers
         }
 
         [HttpDelete]
-        [Route("{photourl}")]
         public IActionResult Delete(string photourl)
         {
             var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/photos", photourl);
