@@ -11,7 +11,6 @@ namespace FreeCourse.Web.Models
         [Required]
         [Display(Name = "Price")]
         public decimal Price { get; set; }
-        [Required]
         public string UserId { get; set; }
         [Required]
         [Display(Name = "Feature")]
@@ -22,6 +21,7 @@ namespace FreeCourse.Web.Models
         [Required]
         [Display(Name = "Description")]
         public string Description { get; set; }
+        
         [Display(Name = "Photo")]
         public string Picture { get; set; }
     }
