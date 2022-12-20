@@ -27,7 +27,7 @@
                                 </td>
                             </tr>
                         }
-                        if(@Model.HasDiscount){
+                        @if(Model.HasDiscount){
                             <tr>
                                 <td>Discount Rate</td>
                                 <th colspan="2"> %@Model.DiscountRate.Value</th>

@@ -23,6 +23,7 @@
                 <img src="@course.StockPictureUrl" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">@course.Name</h5>
+                    <h5><span class="badge bg-secondary">Category: @course.Category.Name</span></h5>
                     <p class="card-text">@course.ShortDescription</p>
                     <h4 class="text-primary">@course.Price $</h4>
                     <a asp-controller="Home" asp-action="Detail" class="btn btn-success" asp-route-id="@course.Id">Detail</a>

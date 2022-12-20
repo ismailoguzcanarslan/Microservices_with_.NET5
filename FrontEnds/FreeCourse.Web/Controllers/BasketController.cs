@@ -1,11 +1,13 @@
 ﻿using FreeCourse.Web.Models;
 using FreeCourse.Web.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Threading.Tasks;
 
 namespace FreeCourse.Web.Controllers
 {
+    [Authorize]
     public class BasketController : Controller
     {
         private readonly ICatalogService _catalogService;
@@ -24,6 +26,8 @@ namespace FreeCourse.Web.Controllers
 
         public async Task<IActionResult> AddBasketItem(string courseId)
         {
+
+
             var course = await _catalogService.GetCourseByIdAsync(courseId);
 
             var basketItemViewModel = new BasketItemViewModel()
