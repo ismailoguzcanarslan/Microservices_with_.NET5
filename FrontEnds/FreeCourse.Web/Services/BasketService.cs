@@ -12,10 +12,12 @@ namespace FreeCourse.Web.Services
     public class BasketService : IBasketService
     {
         private readonly HttpClient _client;
+        private readonly IDiscountService _discountService;
 
-        public BasketService(HttpClient client)
+        public BasketService(HttpClient client, IDiscountService discountService)
         {
             _client = client;
+            _discountService = discountService;
         }
 
         public async Task AddBasketItem(BasketItemViewModel basketItemViewModel)
@@ -47,18 +49,40 @@ namespace FreeCourse.Web.Services
         /// <param name="discountCode"></param>
         /// <returns></returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public Task<bool> AppliedDiscount(string discountCode)
+        public async Task<bool> AppliedDiscount(string discountCode)
         {
-            throw new System.NotImplementedException();
+            await CancelDiscount();
+
+            var basket = await Get();
+
+            if(basket == null || basket.DiscountCode == null)
+                return false;
+
+            var hasDiscount = await _discountService.Get(discountCode);
+
+            if (hasDiscount == null)
+                return false;
+
+            basket.DiscountRate = hasDiscount.Rate;
+            basket.DiscountCode = discountCode;
+            
+            await SaveOrUpdate(basket);
+
+            return true;
         }
-        /// <summary>
-        /// TO-DO
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
-        public Task<bool> CancelDiscount()
+        
+        public async Task<bool> CancelDiscount()
         {
-            throw new System.NotImplementedException();
+            var basket = await Get();
+
+            if (basket == null || basket.DiscountCode == null)
+                return false;
+
+            basket.DiscountCode = null;
+
+            await SaveOrUpdate(basket);
+
+            return true;
         }
 
         public async Task<bool> RemoveBasketItem(string courseId)

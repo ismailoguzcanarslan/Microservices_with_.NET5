@@ -1,3 +1,4 @@
+using FluentValidation;
 using FreeCourse.Shared.Services;
 using FreeCourse.Web.Extention;
 using FreeCourse.Web.Handler;
@@ -5,6 +6,7 @@ using FreeCourse.Web.Helpers;
 using FreeCourse.Web.Models;
 using FreeCourse.Web.Services;
 using FreeCourse.Web.Services.Interfaces;
+using FreeCourse.Web.Validators;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,6 +16,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace FreeCourse.Web
@@ -50,6 +53,10 @@ namespace FreeCourse.Web
                 options.SlidingExpiration = true;
                 options.Cookie.Name = "freecoursewebcookie";
             });
+
+            services.AddScoped<IValidator<CourseCreateInput>, CourseCreateInputValidator>();
+            services.AddScoped<IValidator<CourseUpdateInput>, CourseUpdateInputValidator>();
+            services.AddScoped<IValidator<DiscountApplyInput>, DiscountApplyInputValidator>();
 
             services.AddControllersWithViews();
         }
