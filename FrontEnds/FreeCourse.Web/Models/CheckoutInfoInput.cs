@@ -5,15 +5,15 @@ namespace FreeCourse.Web.Models
     public class CheckoutInfoInput
     {
         [Display(Name = "City")]
-        public string Province { get; private set; }
+        public string Province { get; set; }
         [Display(Name = "County")]
-        public string District { get; private set; }
+        public string District { get; set; }
         [Display(Name = "Street")]
-        public string Street { get; private set; }
+        public string Street { get; set; }
         [Display(Name = "ZipCode")]
-        public string ZipCode { get; private set; }
+        public string ZipCode { get; set; }
         [Display(Name = "Address Line")]
-        public string Line { get; private set; }
+        public string Line { get; set; }
         [Display(Name = "Name")]
         public string CardName { get; set; }
         [Display(Name = "Card Number")]

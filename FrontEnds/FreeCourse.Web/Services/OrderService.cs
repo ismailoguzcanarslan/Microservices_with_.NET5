@@ -53,7 +53,7 @@ namespace FreeCourse.Web.Services
                 Line = checkoutInfoInput.Line,
                 Province = checkoutInfoInput.Province,
                 Street = checkoutInfoInput.Street,
-                ZipCode = checkoutInfoInput.Street
+                ZipCode = checkoutInfoInput.ZipCode
             };
 
             var order = new OrderCreateInput()
@@ -88,10 +88,12 @@ namespace FreeCourse.Web.Services
 
             var responseData = await response.Content.ReadFromJsonAsync<Response<OrderCreatedViewModel>>();
 
+            await _basketService.Delete();
+
             return new OrderCreatedViewModel()
             {
                 IsSuccess = true,
-                OrderId = responseData.Data.OrderId
+                Id = responseData.Data.Id
             };
         }
 
