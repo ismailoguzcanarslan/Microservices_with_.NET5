@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewData["Title"] = "CheckOut";
+}
+
+@model CheckoutInfoInput
+
+<form asp-controller="Orders" asp-action="CheckOut" method="post">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Address</h5>
+                    <div class="mb-3">
+                        <label asp-for="Province" class="form-label"></label>
+                        <input asp-for="Province" class="form-control"/>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="District" class="form-label"></label>
+                        <input asp-for="District" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Street" class="form-label"></label>
+                        <input asp-for="Street" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Line" class="form-label"></label>
+                        <input asp-for="Line" class="form-control"/>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="ZipCode" class="form-label"></label>
+                        <input asp-for="ZipCode" class="form-control" />
+                    </div>
+                    
+                    <h5 class="card-title">Payment Details</h5>
+                    <div class="mb-3">
+                        <label asp-for="CardName" class="form-label"></label>
+                        <input asp-for="CardName" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="CardNo" class="form-label"></label>
+                        <input asp-for="CardNo" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Expiration" class="form-label"></label>
+                        <input asp-for="Expiration" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="CCV" class="form-label"></label>
+                        <input asp-for="CCV" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            
+        </div>
+    </div>
+</form>
+
