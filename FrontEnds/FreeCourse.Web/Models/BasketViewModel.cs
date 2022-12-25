@@ -35,7 +35,7 @@ namespace FreeCourse.Web.Models
 
         public bool HasDiscount
         {
-            get => !string.IsNullOrEmpty(DiscountCode);
+            get => !string.IsNullOrEmpty(DiscountCode) && DiscountRate.HasValue;
         }
     }
 }

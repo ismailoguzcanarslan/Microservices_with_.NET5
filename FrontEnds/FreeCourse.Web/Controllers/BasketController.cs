@@ -26,8 +26,6 @@ namespace FreeCourse.Web.Controllers
 
         public async Task<IActionResult> AddBasketItem(string courseId)
         {
-
-
             var course = await _catalogService.GetCourseByIdAsync(courseId);
 
             var basketItemViewModel = new BasketItemViewModel()
@@ -46,6 +44,22 @@ namespace FreeCourse.Web.Controllers
         public async Task<IActionResult> RemoveBasketItem(string courseId)
         {
             await _basketService.RemoveBasketItem(courseId);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> AppliedDiscount(DiscountApplyInput discountApplyInput)
+        {
+            var discountStatus = await _basketService.AppliedDiscount(discountApplyInput.Code);
+
+            TempData["discountStatus"] = discountStatus;
+        
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> CancelAppliedDiscount()
+        {
+            await _basketService.CancelDiscount();
 
             return RedirectToAction(nameof(Index));
         }

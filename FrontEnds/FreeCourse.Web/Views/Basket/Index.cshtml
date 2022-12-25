@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
 }
 
@@ -10,7 +9,8 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Basket</h5>
-                @if(Model != null && Model.BasketItems.Any()){
+                @if (Model != null && Model.BasketItems.Any())
+                {
                     <table class="table table-striped">
                         <tr>
                             <th>Name</th>
@@ -27,7 +27,9 @@
                                 </td>
                             </tr>
                         }
-                        @if(Model.HasDiscount){
+
+                        @if (Model.HasDiscount)
+                        {
                             <tr>
                                 <td>Discount Rate</td>
                                 <th colspan="2"> %@Model.DiscountRate.Value</th>
@@ -37,8 +39,34 @@
                             <td>Total Price</td>
                             <th colspan="2">@Model.TotalPrice $</th>
                         </tr>
+
                     </table>
-                }else{
+
+                    <form asp-controller="Basket" asp-action="AppliedDiscount">
+
+                        @if(Model.HasDiscount){
+                            <div class="alert alert-success">
+                                 @Model.DiscountCode apllied.
+                                <a asp-controller="Basket" asp-action="CancelAppliedDiscount">(Cancel)</a>
+                            </div>
+                           
+                        }
+
+                        @if(TempData["discountStatus"] != null && (bool)TempData["discountStatus"] == false){
+                            <div class="alert alert-danger">
+                                Code is not valid code.
+                            </div>
+                        }
+
+                        <div class="input-group mb-3">
+                            <input type="text" name="DiscountApplyInput.Code" class="form-control" />
+                            <button type="submit" class="btn btn-outline-secondary">Apply</button>
+                            <div asp-validation-summary="All"></div>
+                        </div>
+                    </form>
+                }
+                else
+                {
                     <div class="alert alert-info">Your cart is empty</div>
                 }
             </div>

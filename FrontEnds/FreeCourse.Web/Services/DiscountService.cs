@@ -11,9 +11,14 @@ namespace FreeCourse.Web.Services
     {
         private readonly HttpClient _client;
 
+        public DiscountService(HttpClient client)
+        {
+            _client = client;
+        }
+
         public async Task<DiscountViewModel> Get(string code)
         {
-            var response = await _client.GetAsync($"discount/GetByCode/{code}");
+            var response = await _client.GetAsync($"discounts/GetByCode/{code}");
 
             if (!response.IsSuccessStatusCode)
                 return null;
