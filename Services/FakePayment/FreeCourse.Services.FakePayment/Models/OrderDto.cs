@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace FreeCourse.Shared.Messages
+namespace FreeCourse.Services.FakePayment.Models
 {
-    public class CreateOrderMessageCommand
+    public class OrderDto
     {
-        public CreateOrderMessageCommand()
+        public OrderDto()
         {
-            OrderItems = new List<OrderItem>();
+            OrderItems = new List<OrderItemDto>();
         }
 
         public string BuyerId { get; set; }
-        public List<OrderItem> OrderItems { get; set; }
+        public List<OrderItemDto> OrderItems { get; set; }
+        public AddressDto Address { get; set; }
+    }
+
+    public class AddressDto
+    {
         public string Province { get; set; }
         public string District { get; set; }
         public string Street { get; set; }
@@ -20,7 +23,7 @@ namespace FreeCourse.Shared.Messages
         public string Line { get; set; }
     }
 
-    public class OrderItem
+    public class OrderItemDto
     {
         public string ProductId { get; set; }
         public string ProductName { get; set; }

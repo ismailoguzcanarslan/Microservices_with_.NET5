@@ -12,13 +12,13 @@ namespace FreeCourse.Web.Services.Interfaces
         /// <param name="checkoutInfoInput"></param>
         /// <returns></returns>
         Task<OrderCreatedViewModel> CreateOrder(CheckoutInfoInput checkoutInfoInput);
-        
+
         /// <summary>
         /// asenkron iletişim. Sipariş bilgileri rabbitMQ ya iletilecek
         /// </summary>
         /// <param name="checkoutInfoInput"></param>
         /// <returns></returns>
-        Task SuspendOrder(CheckoutInfoInput checkoutInfoInput);
+        Task<OrderSuspendViewModel> SuspendOrder(CheckoutInfoInput checkoutInfoInput);
 
         Task<List<OrderViewModel>> GetOrders();
     }

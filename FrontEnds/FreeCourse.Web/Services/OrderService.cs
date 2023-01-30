@@ -104,9 +104,61 @@ namespace FreeCourse.Web.Services
             return response.Data;
         }
 
-        public Task SuspendOrder(CheckoutInfoInput checkoutInfoInput)
+        public async Task<OrderSuspendViewModel> SuspendOrder(CheckoutInfoInput checkoutInfoInput)
         {
-            throw new System.NotImplementedException();
+            var basket = await _basketService.Get();
+
+            var address = new AddressCreateInput()
+            {
+                District = checkoutInfoInput.District,
+                Line = checkoutInfoInput.Line,
+                Province = checkoutInfoInput.Province,
+                Street = checkoutInfoInput.Street,
+                ZipCode = checkoutInfoInput.ZipCode
+            };
+
+            var order = new OrderCreateInput()
+            {
+                Address = address,
+                BuyerId = _identityService.GetUserId,
+            };
+
+            basket.BasketItems.ForEach(x =>
+            {
+                var orderItem = new OrderItemCreateInput()
+                {
+                    ProductId = x.CourseId,
+                    Price = x.Price,
+                    PictureUrl = "",
+                    ProductName = x.CourseName,
+                };
+
+                order.OrderItems.Add(orderItem);
+            });
+
+            var payment = new PaymentInfoInput()
+            {
+                CardName = checkoutInfoInput.CardName,
+                CardNo = checkoutInfoInput.CardNo,
+                CCV = checkoutInfoInput.CCV,
+                Expiration = checkoutInfoInput.Expiration,
+                Price = basket.TotalPrice,
+                Order = order,
+            };
+
+            var result = await _paymentService.ReceivePayment(payment);
+
+            if (!result)
+            {
+                return new OrderSuspendViewModel()
+                {
+                    Error = "Something went wrong on payment.",
+                    IsSuccecfull = false,
+                };
+            }
+
+            await _basketService.Delete();    
+            return new OrderSuspendViewModel() { IsSuccecfull = true };
         }
     }
 }

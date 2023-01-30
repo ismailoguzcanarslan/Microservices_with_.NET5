@@ -7,5 +7,6 @@
         public string Expiration { get; set; }
         public string CCV { get; set; }
         public decimal Price { get; set; }
+        public OrderCreateInput Order { get; set; }
     }
 }
