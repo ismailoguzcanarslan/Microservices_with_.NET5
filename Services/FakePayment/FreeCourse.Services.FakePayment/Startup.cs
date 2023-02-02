@@ -42,6 +42,8 @@ namespace FreeCourse.Services.FakePayment
                 });
             });
 
+            services.AddMassTransitHostedService();
+
             var requiredAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub"); //sub key in mapleme
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
